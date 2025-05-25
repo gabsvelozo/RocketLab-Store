@@ -7,7 +7,7 @@ interface CardProps {
 
 const Card = ({ produto, onAddToCart }: CardProps) => {
   return (
-    <div className="bg-[#f2f6ef] max-w-[400px] shadow-lg p-4 border rounded-xl flex flex-col justify-between">
+    <div className="bg-[#f2f6ef] max-w-[400px] shadow-lg p-4 border rounded-xl flex flex-col justify-between hover:shadow-xl transition-shadow">
       <img
         src={produto.imagens[0]}
         alt={produto.nome}
