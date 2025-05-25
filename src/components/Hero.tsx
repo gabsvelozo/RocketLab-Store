@@ -22,7 +22,7 @@ const Hero = () => {
                         Let nature take <br /> care of your body <br /> and soul
                     </h1>
                 </div>
-            <div className="absolute bottom-0 left-0 w-full h-40 bg-white z-0"></div>
+            <div className="absolute bottom-0 left-0 w-full h-40 bg-[#f2f6ef] z-0"></div>
         </section>
     );
 };
