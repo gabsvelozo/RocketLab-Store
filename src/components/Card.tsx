@@ -12,7 +12,7 @@ const Card = ({ produto }: CardProps) => {
         alt={produto.nome}
         className="w-full h-[390px] object-contain rounded-xl mb-4 bg-[#e4ece0]"
       />
-      <h2 className="text-xl font-semibold">{produto.nome}</h2>
+      <h2 className="text-xl font-ivymode font-regular text-black">{produto.nome}</h2>
       <p className="text-lg text-green-800 font-medium mt-2">
         R${produto.preco.toFixed(2)}
       </p>

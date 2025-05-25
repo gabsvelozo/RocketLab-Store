@@ -41,3 +41,15 @@ body {
   src: url('/src/assets/fonts/IvyMode-Thin.ttf') format('truetype');
   font-weight: 100;
 }
+
+@font-face {
+  font-family: 'IvyMode';
+  src: url('/src/assets/fonts/IvyMode-Regular.ttf') format('truetype');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'IvyMode';
+  src: url('/src/assets/fonts/IvyMode-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+}
