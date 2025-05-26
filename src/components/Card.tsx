@@ -43,7 +43,7 @@ const Card = ({ produto, onAddToCart }: CardProps) => {
             e.stopPropagation();
             onAddToCart?.(produto);
           }}
-          className="bg-[#5d6d5c] hover:bg-gray-400 text-white text-sm font-aileron px-4 py-2 rounded transition-all"
+          className="bg-[#6a8268] hover:bg-[#889e86] text-white text-sm font-aileron px-4 py-2 rounded transition-all"
         >
           Adicionar ao Carrinho
         </button>
