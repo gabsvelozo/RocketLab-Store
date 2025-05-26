@@ -118,7 +118,7 @@ const Navbar = () => {
                       </div>
                       <button
                         onClick={handleCheckout}
-                        className="mt-4 bg-[#5d6d5c] text-white px-4 py-2 rounded hover:bg-[#5d6d5c] transition-colors w-full"
+                        className="mt-4 bg-green-800 text-white px-4 py-2 rounded hover:bg-green-700 transition-colors w-full"
                       >
                         Finalizar compra
                       </button>
@@ -136,15 +136,15 @@ const Navbar = () => {
         <div className="fixed inset-0 flex items-center justify-center z-[100] bg-black bg-opacity-50">
           <div className="bg-white p-8 rounded-lg shadow-xl max-w-md w-full text-center">
             <div className="mb-4">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 text-[#5d6d5c] mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 text-green-800 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
             </div>
-            <h3 className="text-2xl font-bold text-[#5d6d5c] mb-3">Compra realizada com sucesso!</h3>
-            <p className="mb-6 text-gray-600">Obrigado por sua compra. Seu pedido será processado em breve.</p>
+            <h3 className="text-2xl font-bold text-green-800 mb-3">Compra realizada com sucesso!</h3>
+            <p className="mb-6 text-green-800">Obrigado por sua compra. Seu pedido será processado em breve.</p>
             <button
               onClick={() => setShowCheckoutModal(false)}
-              className="bg-[#5d6d5c] text-white px-6 py-2 rounded-lg hover:bg-green-700 transition-colors"
+              className="bg-green-800 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition-colors"
             >
               Fechar
             </button>
