@@ -17,7 +17,7 @@ const Hero = () => {
                 />
             </div>
 
-                <div className="absolute inset-0 ml-[30.5rem] flex items-center justify-center px-10 mb-[15rem]">
+                <div className="absolute inset-0 ml-[32rem] flex items-center justify-center px-10 mb-[15rem]">
                     <h1 className="text-white text-[115px] leading-[1.1] font-ivymode">
                         Let nature take <br /> care of your body <br /> and soul
                     </h1>
