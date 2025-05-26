@@ -6,6 +6,7 @@ import { ChevronRight } from "react-feather";
 const Navbar = () => {
   const { cart, addToCart, removeFromCart, clearCart } = useCart();
   const [showCheckoutModal, setShowCheckoutModal] = useState(false);
+  const [isCartHovered, setIsCartHovered] = useState(false);
 
   const subtotal = cart.reduce(
     (sum, item) => sum + item.produto.preco * item.quantidade,
@@ -15,7 +16,6 @@ const Navbar = () => {
   const handleCheckout = () => {
     setShowCheckoutModal(true);
     clearCart();
-    setTimeout(() => setShowCheckoutModal(false), 3000);
   };
 
   return (
@@ -45,19 +45,38 @@ const Navbar = () => {
               Entrar
             </button>
 
-            <div className="relative group">
+            <div 
+              className="relative group"
+              onMouseEnter={() => setIsCartHovered(true)}
+              onMouseLeave={() => setIsCartHovered(false)}
+            >
               <button className="uppercase font-thin hover:underline hover:text-gray-200">
                 Carrinho ({cart.reduce((total, item) => total + item.quantidade, 0)})
               </button>
 
-              {/* modal do carrinho c a área de conexão */}
-              <div className="absolute top-full -right-10 pt-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none group-hover:pointer-events-auto">
+              {/* Modal do carrinho */}
+              <div className={`absolute top-full -right-10 pt-3 transition-all duration-200 ease-in-out ${
+                isCartHovered ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+              }`}>
                 <div className="h-5 w-full absolute -top-3"></div>
                 
-                {/* modal real */}
-                <div className="bg-white text-black p-4 rounded shadow-md w-[420px] z-50 border border-gray-100">
+                <div className={`bg-white text-black rounded shadow-md z-50 border border-gray-100 transition-all ${
+                  cart.length === 0 ? 'p-6 w-64' : 'p-4 w-[420px]'
+                }`}>
                   {cart.length === 0 ? (
-                    <p className="text-sm">Seu carrinho está vazio.</p>
+                    <div className="flex flex-col items-center justify-center space-y-3">
+                      <svg xmlns="http://www.w3.org/  2000/svg" className="h-8 w-8 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                      </svg>
+                      <p className="text-sm text-gray-600 text-center">Seu carrinho está vazio</p>
+                      <Link 
+                        to="/produtos" 
+                        className="text-sm text-green-800 hover:text-[#5d6d5c] hover:underline transition-colors duration-200"
+                        onClick={() => setIsCartHovered(false)}
+                      >
+                        Ver produtos disponíveis
+                      </Link>
+                    </div>
                   ) : (
                     <>
                       <ul className="max-h-60 overflow-y-auto">
@@ -73,7 +92,7 @@ const Navbar = () => {
                                   e.stopPropagation();
                                   removeFromCart(item.produto.id);
                                 }}
-                                className="w-6 h-6 flex items-center justify-center bg-gray-200 rounded hover:bg-gray-300"
+                                className="w-6 h-6 flex items-center justify-center bg-gray-200 rounded hover:bg-gray-300 transition-colors"
                               >
                                 -
                               </button>
@@ -83,7 +102,7 @@ const Navbar = () => {
                                   e.stopPropagation();
                                   addToCart(item.produto);
                                 }}
-                                className="w-6 h-6 flex items-center justify-center bg-gray-200 rounded hover:bg-gray-300"
+                                className="w-6 h-6 flex items-center justify-center bg-gray-200 rounded hover:bg-gray-300 transition-colors"
                               >
                                 +
                               </button>
@@ -99,7 +118,7 @@ const Navbar = () => {
                       </div>
                       <button
                         onClick={handleCheckout}
-                        className="mt-4 bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition-all w-full"
+                        className="mt-4 bg-[#5d6d5c] text-white px-4 py-2 rounded hover:bg-[#5d6d5c] transition-colors w-full"
                       >
                         Finalizar compra
                       </button>
@@ -112,15 +131,20 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* modal da finalização da compra */}
+      {/* Modal de compra finalizada */}
       {showCheckoutModal && (
         <div className="fixed inset-0 flex items-center justify-center z-[100] bg-black bg-opacity-50">
           <div className="bg-white p-8 rounded-lg shadow-xl max-w-md w-full text-center">
-            <h3 className="text-2xl font-bold text-green-600 mb-4">Compra realizada com sucesso!</h3>
-            <p className="mb-4">Obrigado por sua compra. Seu pedido será processado em breve.</p>
+            <div className="mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 text-[#5d6d5c] mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <h3 className="text-2xl font-bold text-[#5d6d5c] mb-3">Compra realizada com sucesso!</h3>
+            <p className="mb-6 text-gray-600">Obrigado por sua compra. Seu pedido será processado em breve.</p>
             <button
               onClick={() => setShowCheckoutModal(false)}
-              className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition-all"
+              className="bg-[#5d6d5c] text-white px-6 py-2 rounded-lg hover:bg-green-700 transition-colors"
             >
               Fechar
             </button>
