@@ -7,7 +7,7 @@ import { ArrowLeft } from "react-feather";
 const ProductDetailPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { addToCart, clearCart } = useCart();
+  const { addToCart } = useCart(); 
   const [quantity, setQuantity] = useState(1);
   const [showNotification, setShowNotification] = useState(false);
   const [showCheckoutModal, setShowCheckoutModal] = useState(false);
@@ -40,19 +40,12 @@ const ProductDetailPage = () => {
   };
 
   const handleBuyNow = () => {
-    // Limpa o carrinho antes de adicionar o novo item
-    clearCart();
-    // Adiciona a quantidade selecionada do produto
-    for (let i = 0; i < quantity; i++) {
-      addToCart(produto);
-    }
-    // Mostra o modal de confirmação
     setShowCheckoutModal(true);
   };
 
   return (
     <div className="min-h-screen bg-[#889e86] flex flex-col items-center justify-center py-16 px-4">
-      {/* Botão Voltar */}
+      {/* Botão voltar */}
       <div className="w-full max-w-7xl mb-6">
         <button
           onClick={() => navigate(-1)}
@@ -63,7 +56,7 @@ const ProductDetailPage = () => {
         </button>
       </div>
 
-      {/* Notificação do carrinho */}
+      {/* Notificacao de carrinho */}
       {showNotification && (
         <div className="fixed top-20 right-4 bg-green-800/50 text-white px-4 py-2 rounded shadow-lg z-50 animate-fade-in-out">
           {quantity > 1 
@@ -75,7 +68,7 @@ const ProductDetailPage = () => {
       {/* Container principal centralizado */}
       <div className="w-full max-w-7xl">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 bg-white p-10 rounded-lg shadow-md">
-          {/* Galeria de imagens */}
+          {/* Imagens */}
           <div className="space-y-4">
             <div className="bg-gray-50 rounded-lg overflow-hidden flex items-center justify-center h-96">
               <img
@@ -101,7 +94,7 @@ const ProductDetailPage = () => {
             </div>
           </div>
 
-          {/* Informações do produto */}
+          {/* Info produtos */}
           <div className="space-y-6">
             <div>
               <h1 className="text-3xl font-ivymode font-bold text-gray-900">{produto.nome}</h1>
@@ -135,7 +128,7 @@ const ProductDetailPage = () => {
                   Adicionar ao Carrinho
                 </button>
                 <button
-                  onClick={handleBuyNow}
+                  onClick={handleBuyNow} 
                   className="bg-[#6a8268] hover:bg-[#889e86] text-white px-6 py-2 rounded transition-colors"
                 >
                   Comprar Agora
@@ -166,11 +159,10 @@ const ProductDetailPage = () => {
         </div>
       </div>
 
-      {/* Modal de compra finalizada */}
+      {/* Modal compra finalizada */}
       {showCheckoutModal && (
         <div className="fixed inset-0 flex items-center justify-center z-[100] bg-black bg-opacity-50">
-          <div className="bg-white p-8 rounded-lg shadow-xl max-w-md w-full text-center">
-            <div className="mb-4">
+            <div className="bg-white p-8 rounded-lg shadow-xl max-w-md w-full text-center mx-4"> {/* Adicionado mx-4 aqui */}            <div className="mb-4">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 text-green-800 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
@@ -180,7 +172,6 @@ const ProductDetailPage = () => {
             <button
               onClick={() => {
                 setShowCheckoutModal(false);
-                navigate('/produtos');
               }}
               className="bg-green-800 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition-colors"
             >
