@@ -4,7 +4,6 @@ import { useCart } from "../contexts/CartContext";
 import { useState } from "react";
 import { ArrowLeft } from "react-feather";
 
-
 const ProductDetailPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -22,7 +21,7 @@ const ProductDetailPage = () => {
           <h2 className="text-2xl font-bold text-gray-800 mb-4">Produto não encontrado</h2>
           <button 
             onClick={() => navigate('/produtos')}
-            className="bg-green-800 text-white px-6 py-2 rounded hover:bg-green-700 transition-colors"
+            className="bg-green-800 text-white px-6 py-2 rounded transition-colors"
           >
             Voltar para a loja
           </button>
@@ -45,12 +44,12 @@ const ProductDetailPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#889e86] py-16">
+    <div className="min-h-screen bg-[#889e86] flex flex-col items-center justify-center py-16 px-4">
       {/* Botão Voltar */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6">
+      <div className="w-full max-w-7xl mb-6">
         <button
           onClick={() => navigate(-1)}
-          className="flex items-center text-green-800 hover:text-white transition-colors underline"
+          className="flex items-center text-white hover:text-white transition-colors underline"
         >
           <ArrowLeft className="mr-2" size={20} />
           Voltar
@@ -59,22 +58,23 @@ const ProductDetailPage = () => {
 
       {/* Notificação */}
       {showNotification && (
-        <div className="fixed top-20 right-4 bg-green-600 text-white px-4 py-2 rounded shadow-lg z-50 animate-fade-in-out">
+        <div className="fixed top-20 right-4 bg-green-800/50 text-white px-4 py-2 rounded shadow-lg z-50 animate-fade-in-out">
           {quantity > 1 
             ? `${quantity} ${produto.nome}s adicionados ao carrinho!`
             : `${produto.nome} adicionado ao carrinho!`}
         </div>
       )}
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 bg-white p-6 rounded-lg shadow-md">
+      {/* Container principal centralizado */}
+      <div className="w-full max-w-7xl">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 bg-white p-10 rounded-lg shadow-md">
           {/* Galeria de imagens */}
           <div className="space-y-4">
             <div className="bg-gray-50 rounded-lg overflow-hidden flex items-center justify-center h-96">
               <img
                 src={produto.imagens[mainImage]}
                 alt={produto.nome}
-                className="max-h-full max-w-full object-fill"
+                className="max-h-full max-w-full object-contain"
               />
             </div>
             <div className="grid grid-cols-4 gap-3">
@@ -123,13 +123,13 @@ const ProductDetailPage = () => {
               <div className="flex flex-wrap gap-3">
                 <button
                   onClick={handleAddToCart}
-                  className="bg-[#889e86] hover:bg-[#6a8268] text-white px-6 py-2 rounded transition-colors"
+                  className="bg-[#6a8268] hover:bg-[#889e86] text-white px-6 py-2 rounded transition-colors"
                 >
                   Adicionar ao Carrinho
                 </button>
                 <button
                   onClick={handleBuyNow}
-                  className="bg-green-800 hover:bg-green-700 text-white px-6 py-2 rounded transition-colors"
+                  className="bg-[#6a8268] hover:bg-[#889e86] text-white px-6 py-2 rounded transition-colors"
                 >
                   Comprar Agora
                 </button>
@@ -143,17 +143,17 @@ const ProductDetailPage = () => {
               </div>
             )}
             {produto.detalhes && produto.detalhes.length > 0 ? (
-            <div className="pt-6 border-t">
+              <div className="pt-6 border-t">
                 <h2 className="text-xl font-semibold mb-3">Detalhes</h2>
                 <ul className="space-y-2 text-gray-700">
-                {produto.detalhes.map((detalhe, index) => (
+                  {produto.detalhes.map((detalhe, index) => (
                     <li key={index} className="flex">
-                    <span className="mr-2">•</span>
-                    <span>{detalhe}</span>
+                      <span className="mr-2">•</span>
+                      <span>{detalhe}</span>
                     </li>
-                ))}
+                  ))}
                 </ul>
-            </div>
+              </div>
             ) : null}
           </div>
         </div>
