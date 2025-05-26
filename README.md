@@ -39,6 +39,7 @@ Bem-vindo(a) ao Rocket Lab Store! Esse projeto é uma aplicação web de e-comme
    ```sh
    git clone https://github.com/gabsvelozo/RocketLab-Store.git
    cd RocketLab-Store
+   code .
    ```
 2. **Instale as dependências pelo npm:**
    ```sh
