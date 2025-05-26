@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useCart } from "../contexts/CartContext";
-import { ChevronRight } from "react-feather";
 
 const Navbar = () => {
   const { cart, addToCart, removeFromCart, clearCart } = useCart();
@@ -29,15 +28,15 @@ const Navbar = () => {
 
         <div className="flex items-center gap-[150px] relative">
           <div className="flex gap-6 font-thin">
-            <Link to="/" className='flex flex-row gap-1 items-center hover:text-gray-200 hover:underline'>
-              Páginas <span><ChevronRight size={16} strokeWidth={2}/></span>
+            <Link to="/" className="hover:text-gray-200 hover:underline">
+              Home
             </Link>
             <Link to="/produtos" className="hover:text-gray-200 hover:underline">
               Comprar
             </Link>
-            <Link to="/" className="hover:text-gray-200 hover:underline">
+            <button className="uppercase font-thin hover:underline hover:text-gray-200">
               Sobre
-            </Link>
+            </button>
           </div>
 
           <div className="flex gap-3 items-center">
