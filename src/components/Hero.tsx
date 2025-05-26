@@ -6,7 +6,7 @@ const Hero = () => {
                     <img
                         src="/src/assets/Velvety2.png"
                         alt="Produto Velvety"
-                        className="drop-shadow-2xl z-[80] max-h-[80vh]"
+                        className="drop-shadow-2xl z-[11] max-h-[1000vh]"
                     />
                 </div>
                 <div className="w-1/2 relative">
